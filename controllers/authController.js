@@ -77,8 +77,6 @@ module.exports.loginUser = async (req, res) => {
 
 module.exports.forgotPassword = async (req, res) => {
     try {
-        console.log(req.body);
-        
         if (!req.body.email) {
             return res.status(400).json({ message: "Email is required", status: 0 });
         }
