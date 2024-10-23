@@ -1,26 +1,10 @@
 const mongoose = require('mongoose');
-const UserSchema = mongoose.Schema({
+const societySchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
     },
-    email: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    number: {
-        type: Number,
-        required: true,
-        unique: true,
-        minlength: 10,
-        maxlength: 10
-    },
-    country: {
-        type: String,
-        required: true
-    },
-    state: {
+    address: {
         type: String,
         required: true
     },
@@ -28,19 +12,19 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    societyId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Society',
-        required: true
-    },
-    password: {
+    state: {
         type: String,
         required: true
     },
-    role: {
+    country: {
         type: String,
+        required: true
+    },
+    zipcode: {
+        type: Number,
         required: true,
-        enum: ['admin', 'user']
+        minlength: 6,
+        maxlength: 6
     },
     isActive: {
         type: Boolean,
@@ -57,6 +41,9 @@ const UserSchema = mongoose.Schema({
         required: true,
         default: new Date().toLocaleDateString()
     },
+    userIds: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }],
 });
-
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('Society', societySchema);

@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use('/auth', require('./routes/auth'));
+app.use('/', require('./routes/index'));
 app.use((req, res, next) => {
     res.cookie('exampleCookie', 'cookieValue', {
         maxAge: 24 * 60 * 60 * 1000, // 24 hours

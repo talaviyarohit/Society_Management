@@ -61,7 +61,7 @@ module.exports.loginUser = async (req, res) => {
                     let token = await jwt.sign({ userData: checkmail }, secretKey, { expiresIn: '1d' });
                     return res.status(200).json({ message: "You're Logged In Successfully 🎉", status: 1, data: token });
                 } else {
-                    return res.status(400).json({ message: "Password is Incorrect", status: 0 });
+                    return res.status(400).json({ message: "Incorrect password", status: 0 });
                 }
             } else {
                 return res.status(400).json({ message: "Email is Incorrect", status: 0 });
@@ -119,7 +119,7 @@ module.exports.verifyOtp = async (req, res) => {
             if (req.body.otp == req.cookies.otp) {
                 return res.status(200).json({ message: "OTP Verified Successfully 🎉", status: 1 });
             } else {
-                return res.status(400).json({ message: "OTP is Incorrect", status: 0 });
+                return res.status(400).json({ message: "Wrong OTP Entered", status: 0 });
             }
         } else {
             return res.status(400).json({ message: "Data Not Found", status: 0 });
