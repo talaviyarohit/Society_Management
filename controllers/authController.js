@@ -82,6 +82,7 @@ module.exports.forgotPassword = async (req, res) => {
             if (checkmail) {
                 const Otp = Math.floor(100000 + Math.random() * 900000);
                 res.cookie('otp', Otp);
+                res.cookie('email', checkmail.email);
                 const transporter = nodemailer.createTransport({
                     host: "smtp.gmail.com",
                     port: 465,
@@ -93,7 +94,7 @@ module.exports.forgotPassword = async (req, res) => {
                 });
                 const info = await transporter.sendMail({
                     from: process.env.EMAIL,
-                    to: req.body.email,
+                    to: req.cookies.email,
                     subject: "Forgot Password OTP ✔",
                     text: `Hello ${checkmail.name}`,
                     html: `<p>You're OTP is ${Otp}</p>`,
@@ -132,7 +133,7 @@ module.exports.verifyOtp = async (req, res) => {
 module.exports.resetPassword = async (req, res) => {
     try {
         if (req.body !== "") {
-            let checkmail = await User.findOne({ email: req.body.email });
+            let checkmail = await User.findOne({ email: req.cookies.email });
             if (checkmail) {
                 if (req.body.password !== "" && req.body.password === req.body.confirmPassword) {
                     let pass = await bcrypt.hash(req.body.password, 10);
