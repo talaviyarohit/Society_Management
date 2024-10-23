@@ -28,9 +28,9 @@ module.exports.registerUser = async (req, res) => {
                         const info = await transporter.sendMail({
                             from: process.env.EMAIL,
                             to: req.body.email,
-                            subject: "Refisteration Successfully ✔",
+                            subject: "Registration Successful ✔",
                             text: `Hello ${req.body.name}`,
-                            html: `<p>You're Successfully Registered</p><br><p>You're Login Credentials are</p><br><b>email = ${req.body.email}</b></br></br><b>password = ${req.body.password}</b>`,
+                            html: `<p>You've Successfully Registered</p><br><p>You can now log in with your email address.</p>`,
                         })
                         return res.status(200).json({ message: "User Registered Successfully", status: 1, data: newUser });
                     } else {
@@ -45,8 +45,8 @@ module.exports.registerUser = async (req, res) => {
             return res.status(400).json({ message: "Data Not Found", status: 0 });
         }
     } catch (error) {
-        console.log(error.message);
-        return res.status(400).json({ message: "Something Wrong", status: 0 });
+        console.error(error.message);
+        return res.status(500).json({ message: "Internal Server Error", status: 0 });
     }
 }
 
@@ -71,7 +71,7 @@ module.exports.loginUser = async (req, res) => {
         }
     } catch (error) {
         console.log(error.message);
-        return res.status(400).json({ message: "Something Wrong", status: 0 });
+        return res.status(400).json({ message: "Internal Server Error", status: 0 });
     }
 }
 
@@ -81,8 +81,8 @@ module.exports.forgotPassword = async (req, res) => {
             let checkmail = await User.findOne({ email: req.body.email });
             if (checkmail) {
                 const Otp = Math.floor(100000 + Math.random() * 900000);
-                res.cookie('otp', Otp);
-                res.cookie('email', checkmail.email);
+                res.cookie('otp', Otp, { httpOnly: true, secure: true });
+                res.cookie('email', checkmail.email, { httpOnly: true, secure: true });
                 const transporter = nodemailer.createTransport({
                     host: "smtp.gmail.com",
                     port: 465,
@@ -99,7 +99,7 @@ module.exports.forgotPassword = async (req, res) => {
                     text: `Hello ${checkmail.name}`,
                     html: `<p>You're OTP is ${Otp}</p>`,
                 })
-                return res.status(200).json({ message: "OTP Sent Successfully 🎉", status: 1, data: Otp });
+                return res.status(200).json({ message: "OTP Sent Successfully 🎉", status: 1 });
             } else {
                 return res.status(400).json({ message: "Email is Incorrect", status: 0 });
             }
@@ -107,8 +107,8 @@ module.exports.forgotPassword = async (req, res) => {
             return res.status(400).json({ message: "Data Not Found", status: 0 });
         }
     } catch (error) {
-        console.log(error.message);
-        return res.status(400).json({ message: "Something Wrong", status: 0 });
+        console.error(error.message);
+        return res.status(500).json({ message: "Internal Server Error", status: 0 });
     }
 }
 
@@ -154,4 +154,3 @@ module.exports.resetPassword = async (req, res) => {
         return res.status(400).json({ message: "Something Wrong", status: 0 });
     }
 }
-
