@@ -40,7 +40,22 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: true,
         enum: ['admin', 'user']
-    }
+    },
+    isActive: {
+        type: Boolean,
+        required: true,
+        default: true
+    },
+    createdDate: {
+        type: String,
+        required: true,
+        default: new Date().toLocaleDateString()
+    },
+    updatedDate: {
+        type: String,
+        required: true,
+        default: new Date().toLocaleDateString()
+    },
 });
 
 module.exports = mongoose.model('User', UserSchema);

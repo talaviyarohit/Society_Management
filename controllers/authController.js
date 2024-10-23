@@ -38,6 +38,8 @@ module.exports.registerUser = async (req, res) => {
                         return res.status(400).json({ message: "Something Wrong", status: 0 });
                     }
                 }
+            } else {
+                return res.status(400).json({ message: "Password and Confirm Password is Not Matched", status: 0 });
             }
         } else {
             return res.status(400).json({ message: "Data Not Found", status: 0 });
@@ -57,7 +59,7 @@ module.exports.loginUser = async (req, res) => {
                 let pass = await bcrypt.compare(req.body.password, checkmail.password);
                 if (pass) {
                     let token = await jwt.sign({ userData: checkmail }, secretKey, { expiresIn: '1d' });
-                    return res.status(200).json({ message: "You're Logged In Successfully", status: 1, data: token });
+                    return res.status(200).json({ message: "You're Logged In Successfully 🎉", status: 1, data: token });
                 } else {
                     return res.status(400).json({ message: "Password is Incorrect", status: 0 });
                 }
