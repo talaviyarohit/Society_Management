@@ -2,5 +2,5 @@ const express = require('express');
 const router = express.Router();
 const { insertSociety, getSociety } = require('../controllers/societyController');
 router.post('/insertSociety', insertSociety);
-router.get('/getSociety/:id', getSociety);
+router.get('/getSociety', getSociety);
 module.exports = router;
