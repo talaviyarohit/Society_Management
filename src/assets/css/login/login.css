@@ -1,0 +1,39 @@
+
+
+.left-50{
+    width: 50%;
+}
+.dash{
+    background: #FE512E;
+    background: linear-gradient(to right, #FE512E 0%, #00FF00 99%,);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.login-background{
+   background-color: white;
+   padding: 60px 30px ;
+   width: 600px;
+   box-shadow: 1px 0px 2px  rgb(231, 231, 241);
+}
+.dashstack{
+    height: 500px;
+    margin-left: 50px;
+}
+.image{
+    width: 600px;
+    height: 491px;
+}
+.right-side{
+    background-image: url(../../image/line.svg);
+    background-position: top;
+}
+.forget_image{
+    width: 400px;
+    left: 100px;
+}
+.forget_right{
+    top: 100px;
+}
+.resend{
+    margin-left: 78%;
+}
