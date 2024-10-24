@@ -19,3 +19,18 @@
   background: #000;
   /* hover effect for the scrollbar thumb */
 }
+
+.image1{
+  width: 650px;
+  height: 450px;
+}
+
+.regform{
+  height: 500px;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+  background-color: white;
+  justify-self: center;
+}
