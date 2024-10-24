@@ -44,8 +44,8 @@ export default function RegistrationForm() {
     <>
       <div className="flex min-h-screen bg-gray-100">
         {/* Left side */}
-        <div className="hidden lg:flex w-1/2 bg-gray flex-col p-12">
-          <h2 className="text-3xl font-bold text-gray-900"><span className='dash'>Dash</span>Stack</h2>
+        <div className="flex-1 flex flex-col justify-center px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24 left-50 bg-gray-200">
+          <h2 className="text-3xl font-bold text-gray-900 "><span className='dash'>Dash</span>Stack</h2>
           <div className="flex-grow flex items-center justify-center">
             <img src={regImg} alt="Isometric illustration" className="max-w-md image1" />
           </div>
@@ -192,7 +192,7 @@ export default function RegistrationForm() {
             </div>
             <div className="flex items-center">
               <input id="terms" name="terms" type="checkbox" className="h-4 w-4 text-[#FF5733] focus:ring-[#FF5733] border-gray-300 rounded" required />
-              <label htmlFor="terms" className="ml-2 block text-sm text-gray-900">
+              <label htmlFor="terms" className="ml-1 block text-sm text-gray-900">
                 I agree to all the Terms and <span className="text-[#FF5733]">Privacy Policies</span>
               </label>
             </div>
@@ -202,7 +202,7 @@ export default function RegistrationForm() {
               </button>
             </div>
           </form>
-          <p className="mt-4 text-center text-sm text-gray-600">
+          <p className="mt-6 text-center text-sm text-gray-600">
             Already have an account? <a href="#" className="font-medium text-[#FF5733] hover:text-[#FF8C00]">Login</a>
           </p>
         </div>
