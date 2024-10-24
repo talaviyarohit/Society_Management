@@ -20,7 +20,7 @@ module.exports.insertSociety = async (req, res) => {
 
 module.exports.getSociety = async (req, res) => {
     try {
-        if (req.params.id === '') {
+        if (req.params.id === '' || req.params.id === undefined || req.params.id === null) {
             const society = await Society.find();
             if (society) {
                 return res.status(200).json({ message: "Society fetched successfully", status: 1, data: society });
