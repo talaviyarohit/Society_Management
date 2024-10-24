@@ -8,7 +8,7 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import OtpPage from './components/Login/Forget-otp';
 import Resetpassword from './components/Login/Resetpassword';
 import RegistrationForm from './components/Registration/Registration';
-import Popup from './components/Registration/Popup';
+
 
 
 function App() {
@@ -25,7 +25,7 @@ function App() {
         <Route path='/registration' element={<RegistrationForm/>}/>
       </Routes>
     </Router>
-    <Popup/>
+   
    
     </> 
     
