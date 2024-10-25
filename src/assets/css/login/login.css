@@ -43,11 +43,7 @@
     margin-left: 78%;
 }
 .regform{
-    height: 500px;
-    width: 50%;
-    display: flex;
-    justify-content: center;
-    margin-top: 100px;
-    background-color: white;
-    justify-self: center;
+    box-shadow: 1px 0px 2px  rgb(231, 231, 241);
+   
+   
 }
