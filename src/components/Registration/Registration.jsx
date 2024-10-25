@@ -1,20 +1,11 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { EyeIcon, EyeOffIcon, ChevronDown } from 'lucide-react'
 import regImg from "../../assets/image/1.png"
 import '../../assets/css/registration/registration.css'
 import '../../assets/css/login/login.css'
+import { Registration, Society } from '../../apis/api'
+import { useNavigate } from 'react-router-dom';
 
-
-const societies = [
-  "Shantigram residency",
-  "Russett House Park",
-  "Sourya residency",
-  "Shamuddh Avenyu",
-  "Utasv society",
-  "Muridhar",
-  "Shree Sharanam",
-  "vasantnagar township"
-];
 const popupStyle = {
   position: 'fixed',
   top: 0,
@@ -27,49 +18,95 @@ const popupStyle = {
   alignItems: 'center',
   zIndex: 1000
 };
-
 const popupContentStyle = {
- 
   padding: '20px',
-  borderRadius: '5px' ,
-  
-  
+  borderRadius: '5px',
+
 };
 
 
 export default function RegistrationForm() {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedSociety, setSelectedSociety] = useState('');
-  const [searchTerm, setSearchTerm] = useState('');
   const [isOpenDrop, setIsOpenDrop] = useState(false);
-
+  const [society, setSociety] = useState([]);
   const togglePopup = () => {
     setIsOpenDrop(!isOpenDrop);
   };
-  
-    const [formData, setFormData] = useState({
-      name: '',
-      address: '',
-      country: '',
-      state: '',
-      city: '',
-      zipCode: '',
-    });
-  
-    const handleChange = (e) => {
-      setFormData({
-        ...formData,
-        [e.target.name]: e.target.value,
+
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    number: '',
+    country: '',
+    state: '',
+    city: '',
+    password: '',
+    confirmPassword: '',
+    societyId: selectedSociety ? selectedSociety.id : '',
+  });
+
+  useEffect(() => {
+    const fetchSociety = async () => {
+      let society = [];
+      let data = await Society();
+      data.forEach(v => {
+        var value = {
+          id: v._id,
+          name: v.name
+        }
+        society.push(value);
       });
+      setSociety(society);
     };
-  
-    const handleSubmit = (e) => {
-      e.preventDefault();
-      console.log('Form Data:', formData);
-      // Form submission logic can go here
-    };
+    fetchSociety();
+  }, []);
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if(formData.societyId === '' && selectedSociety !== ''){
+      formData.societyId = selectedSociety.id;
+    } else if (formData.societyId === '' && selectedSociety === '') {
+      alert("Please select a society");
+      return;
+    }
+    formData.name = `${formData.firstName} ${formData.lastName}`;
+    formData.role = "admin";
+    delete formData.firstName;
+    delete formData.lastName;
+
+    let data = await Registration(formData);  
+    if(data.status === 1){
+      alert(data.message);
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        number: '',
+        country: '',
+        state: '',
+        city: '',
+        password: '',
+        confirmPassword: '',
+        societyId:'',
+      });
+      setSelectedSociety('');
+      navigate('/');
+    } else {
+      alert(data.message);
+    }
+  };
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
@@ -82,10 +119,6 @@ export default function RegistrationForm() {
     console.log("Create new society");
     setIsOpen(false);
   };
-
-  const filteredSocieties = societies.filter(society =>
-    society.toLowerCase().includes(searchTerm.toLowerCase())
-  );
 
   return (
     <>
@@ -105,40 +138,40 @@ export default function RegistrationForm() {
         {/* Right side */}
         <div className=" w-1/2 bg-white p-10 right-side pt-20 login-background1">
 
-          <form className="space-y-5 flex flex-col justify-center px-4 bg-white regform ">
+          <form className="space-y-5 flex flex-col justify-center px-4 bg-white regform " onSubmit={handleSubmit}>
             <h2 className="text-3xl font-semibold mb-6">Registration</h2>
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">First Name*</label>
-                <input type="text" id="firstName" name="firstName" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
+                <input type="text" id="firstName" name="firstName" value={formData.firstName} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
               </div>
               <div>
                 <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">Last Name*</label>
-                <input type="text" id="lastName" name="lastName" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
+                <input type="text" id="lastName" name="lastName" value={formData.lastName} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email Address*</label>
-                <input type="email" id="email" name="email" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
+                <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
               </div>
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700">Phone Number*</label>
-                <input type="tel" id="phone" name="phone" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
+                <label htmlFor="number" className="block text-sm font-medium text-gray-700">Phone Number*</label>
+                <input type="tel" id="number" name="number" value={formData.number} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
               </div>
             </div>
             <div className="grid grid-cols-3 gap-4">
               <div>
                 <label htmlFor="country" className="block text-sm font-medium text-gray-700">Country*</label>
-                <input type="text" id="country" name="country" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
+                <input type="text" id="country" name="country" value={formData.country} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
               </div>
               <div>
                 <label htmlFor="state" className="block text-sm font-medium text-gray-700">State*</label>
-                <input type="text" id="state" name="state" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
+                <input type="text" id="state" name="state" value={formData.state} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
               </div>
               <div>
                 <label htmlFor="city" className="block text-sm font-medium text-gray-700">City*</label>
-                <input type="text" id="city" name="city" className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
+                <input type="text" id="city" name="city" value={formData.city} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
               </div>
             </div>
             <div className="w-full">
@@ -150,23 +183,23 @@ export default function RegistrationForm() {
                   className="w-full bg-white border border-gray-300 rounded-md shadow-sm px-4 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
                   onClick={toggleDropdown}
                 >
-                  <span className="block truncate">{selectedSociety || 'Select a society'}</span>
+                  <span className="block truncate">{selectedSociety.name || 'Select a society'}</span>
                   <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
                     <ChevronDown className="h-5 w-5 text-gray-400" aria-hidden="true" />
                   </span>
                 </div>
                 {isOpen && (
                   <div className="absolute z-10 mt-1 w-full bg-white shadow-lg rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                   
+
                     <div className="max-h-48 overflow-y-auto custom-scrollbar">
                       <ul className="py-1">
-                        {filteredSocieties.map((society) => (
+                        {society.map((society) => (
                           <li
-                            key={society}
+                            key={society.id}
                             className="text-gray-900 cursor-pointer select-none relative py-2 pl-3 pr-9 hover:bg-gray-100"
                             onClick={() => handleSelect(society)}
                           >
-                            {society}
+                            {society.name}
                           </li>
                         ))}
                       </ul>
@@ -190,6 +223,8 @@ export default function RegistrationForm() {
                   type={showPassword ? "text" : "password"}
                   id="password"
                   name="password"
+                  value={formData.password}
+                  onChange={handleChange}
                   className="block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]"
                   required
                 />
@@ -213,6 +248,8 @@ export default function RegistrationForm() {
                   type={showConfirmPassword ? "text" : "password"}
                   id="confirmPassword"
                   name="confirmPassword"
+                  value={formData.confirmPassword}
+                  onChange={handleChange}
                   className="block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]"
                   required
                 />
@@ -249,121 +286,121 @@ export default function RegistrationForm() {
 
       {isOpenDrop && (
         <div style={popupStyle}>
-          <div  className='rounded-md'>
-          <div className="flex  items-center  bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-md max-w-md w-full">
-        <h2 className="text-2xl font-bold mb-6 ">Create New Society</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-              Society Name<span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-              placeholder="Enter Name"
-            />
-          </div>
+          <div className='rounded-md'>
+            <div className="flex  items-center  bg-gray-100">
+              <div className="bg-white p-8 rounded-lg shadow-md max-w-md w-full">
+                <h2 className="text-2xl font-bold mb-6 ">Create New Society</h2>
+                <form onSubmit={handleSubmit}>
+                  <div className="mb-4">
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                      Society Name<span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                      placeholder="Enter Name"
+                    />
+                  </div>
 
-          <div className="mb-4">
-            <label htmlFor="address" className="block text-sm font-medium text-gray-700">
-              Society Address<span className="text-red-500">*</span>
-            </label>
-            <input
-              type="text"
-              id="address"
-              name="address"
-              value={formData.address}
-              onChange={handleChange}
-              required
-              className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-              placeholder="Enter Address"
-            />
-          </div>
+                  <div className="mb-4">
+                    <label htmlFor="address" className="block text-sm font-medium text-gray-700">
+                      Society Address<span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="address"
+                      name="address"
+                      value={formData.address}
+                      onChange={handleChange}
+                      required
+                      className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                      placeholder="Enter Address"
+                    />
+                  </div>
 
-          <div className="grid grid-cols-2 gap-4 mb-4">
-            <div>
-              <label htmlFor="country" className="block text-sm font-medium text-gray-700">
-                Country<span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                id="country"
-                name="country"
-                value={formData.country}
-                onChange={handleChange}
-                required
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-                placeholder="Enter Name"
-              />
-            </div>
-            <div>
-              <label htmlFor="state" className="block text-sm font-medium text-gray-700">
-                State<span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                id="state"
-                name="state"
-                value={formData.state}
-                onChange={handleChange}
-                required
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-                placeholder="Enter Name"
-              />
-            </div>
-          </div>
+                  <div className="grid grid-cols-2 gap-4 mb-4">
+                    <div>
+                      <label htmlFor="country" className="block text-sm font-medium text-gray-700">
+                        Country<span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        id="country"
+                        name="country"
+                        value={formData.country}
+                        onChange={handleChange}
+                        required
+                        className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                        placeholder="Enter Name"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="state" className="block text-sm font-medium text-gray-700">
+                        State<span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        id="state"
+                        name="state"
+                        value={formData.state}
+                        onChange={handleChange}
+                        required
+                        className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                        placeholder="Enter Name"
+                      />
+                    </div>
+                  </div>
 
-          <div className="grid grid-cols-2 gap-4 mb-4">
-            <div>
-              <label htmlFor="city" className="block text-sm font-medium text-gray-700">
-                City<span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                id="city"
-                name="city"
-                value={formData.city}
-                onChange={handleChange}
-                required
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-                placeholder="Enter Name"
-              />
-            </div>
-            <div>
-              <label htmlFor="zipCode" className="block text-sm font-medium text-gray-700">
-                Zip Code<span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                id="zipCode"
-                name="zipCode"
-                value={formData.zipCode}
-                onChange={handleChange}
-                required
-                className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-                placeholder="Enter Zip Code"
-              />
-            </div>
-          </div>
+                  <div className="grid grid-cols-2 gap-4 mb-4">
+                    <div>
+                      <label htmlFor="city" className="block text-sm font-medium text-gray-700">
+                        City<span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        id="city"
+                        name="city"
+                        value={formData.city}
+                        onChange={handleChange}
+                        required
+                        className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                        placeholder="Enter Name"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="zipCode" className="block text-sm font-medium text-gray-700">
+                        Zip Code<span className="text-red-500">*</span>
+                      </label>
+                      <input
+                        type="text"
+                        id="zipCode"
+                        name="zipCode"
+                        value={formData.zipCode}
+                        onChange={handleChange}
+                        required
+                        className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+                        placeholder="Enter Zip Code"
+                      />
+                    </div>
+                  </div>
 
-          <div className="flex justify-between">
-            <button type="button" onClick={togglePopup} className="bg-gray-200 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-300">
-              Cancel
-            </button>
-            <button type="submit" className="bg-gray-200 text-black py-2 px-4 rounded-md hover:bg-indigo-700">
-              Save
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-            
+                  <div className="flex justify-between">
+                    <button type="button" onClick={togglePopup} className="bg-gray-200 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-300">
+                      Cancel
+                    </button>
+                    <button type="submit" className="bg-gray-200 text-black py-2 px-4 rounded-md hover:bg-indigo-700">
+                      Save
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
           </div>
         </div>
       )}
