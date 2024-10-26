@@ -8,6 +8,8 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import OtpPage from './components/Login/Forget-otp';
 import Resetpassword from './components/Login/Resetpassword';
 import RegistrationForm from './components/Registration/Registration';
+import Owner from './components/Resident_management/Owner';
+
 
 
 
@@ -26,7 +28,7 @@ function App() {
       </Routes>
     </Router>
    
-   
+   <Owner/>
     </> 
     
   );
