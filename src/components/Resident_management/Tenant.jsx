@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import { Bell, ChevronDown, Container, LogOut, Upload } from 'lucide-react'
-import owner from '../../assets/image/owner.jpg'
+import tenant from '../../assets/image/tenant.jpg'
 import { UploadIcon } from './UploadIcon';
 import { X, Trash2 } from 'lucide-react'
 
 
 
-const Owner = () => {
+const Tenant = () => {
     const [fileNames, setFileNames] = useState(Array(4).fill(""));
     const [files, setFiles] = useState([
         { id: 1, name: 'Syncfusion Essential Adhocard.JPG', size: '3.5 MB', progress: 40 },
@@ -97,6 +97,16 @@ const Owner = () => {
         );
         setVehicles(updatedVehicles);
     };
+    const [owner, setOwner] = useState({
+        fullName: '',
+        phone: '',
+        address: '',
+    });
+
+    const handleTenantChange = (field, value) => {
+        setOwner({ ...owner, [field]: value });
+    };
+
 
     return (
 
@@ -106,14 +116,53 @@ const Owner = () => {
                     {/* Main content */}
                     <main className="flex-1 p-8">
                         <div className="flex mb-4">
-                            <button className="bg-orange-500 text-white px-4 py-2 rounded-tl-md rounded-bl-md">Owner</button>
-                            <button className="bg-gray-200 text-gray-700 px-4 py-2 rounded-tr-md rounded-br-md">Tenant</button>
+                            <button className=" bg-gray-200 text-gray-700 px-4 py-2 rounded-tl-md rounded-bl-md">Owner</button>
+                            <button className="bg-orange-500 text-white px-4 py-2 rounded-tr-md rounded-br-md">Tenant</button>
                         </div>
-                       
+                        <div className="bg-white shadow-md rounded-lg p-6 mt-3">
+                            <h2 className="text-xl font-semibold text-gray-800 mb-4">Owner Information</h2>
+                            <div className="flex gap-4">
+                                <div className="flex flex-col w-1/3">
+                                    <label className="text-gray-600 font-semibold">Owner Full Name*</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Enter full name"
+                                        className="border border-gray-300 p-2 rounded-md"
+                                        value={owner.fullName}
+                                        onChange={(e) => handleChange('fullName', e.target.value)}
+                                    />
+                                </div>
+                                <div className="flex flex-col w-1/3">
+                                    <label className="text-gray-600 font-semibold">Owner Phone*</label>
+                                    <input
+                                        type="text"
+                                        placeholder="+91 9575252165"
+                                        className="border border-gray-300 p-2 rounded-md"
+                                        value={owner.phone}
+                                        onChange={(e) => handleTenantChange('phone', e.target.value)}
+                                    />
+                                </div>
+                                <div className="flex flex-col w-1/3">
+                                    <label className="text-gray-600 font-semibold">Owner Address*</label>
+                                    <input
+                                        type="text"
+                                        placeholder="Enter address"
+                                        className="border border-gray-300 p-2 rounded-md"
+                                        value={owner.address}
+                                        onChange={(e) => handleTenantChange('address', e.target.value)}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
                         <div className="bg-white shadow-md rounded-lg p-6">
                             <div className='flex w-full m-0'>
                                 <div>
-                                    <img src={owner} alt="" />
+                                    <img src={tenant} alt="" />
                                 </div>
                                 <div className="w-full">
                                     <form className="w-full">
@@ -403,4 +452,4 @@ const Owner = () => {
     )
 }
 
-export default Owner;
+export default Tenant;

@@ -8,12 +8,11 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import OtpPage from './components/Login/Forget-otp';
 import Resetpassword from './components/Login/Resetpassword';
 import RegistrationForm from './components/Registration/Registration';
-<<<<<<< HEAD
 import Owner from './components/Resident_management/Owner';
-
-=======
 import Dashboard from './components/Dashboard/Dashboard';
->>>>>>> 0981b5559461453cb743ba8be80c330dd47bd609
+import Tenant from './components/Resident_management/Tenant';
+
+
 
 
 
@@ -32,11 +31,10 @@ function App() {
       </Routes>
     </Router>
    
-<<<<<<< HEAD
-   <Owner/>
-=======
    <Dashboard/>
->>>>>>> 0981b5559461453cb743ba8be80c330dd47bd609
+<Owner/>
+<Tenant/>
+
     </> 
     
   );
