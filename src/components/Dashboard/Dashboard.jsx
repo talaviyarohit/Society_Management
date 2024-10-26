@@ -13,19 +13,19 @@ export default function Dashboard() {
                     <a href="#" className="block py-2 px-4 text-white bg-orange-500 hover:bg-orange-700 flex items-center">
                         <Home className="mr-2" /> Dashboard
                     </a>
-                    <a href="#" className="block py-2 px-4 text-gray-700 hover:bg-gray-300 flex items-center">
+                    <a href="#" className="block py-2 px-4 text-gray-700 hover:bg-gray-200 flex items-center">
                         <Users className="mr-2" /> Resident Management
                     </a>
-                    <a href="#" className="block py-2 px-4 text-gray-700 hover:bg-gray-300 flex items-center">
+                    <a href="#" className="block py-2 px-4 text-gray-700 hover:bg-gray-200 flex items-center">
                         <DollarSign className="mr-2" /> Financial Management
                     </a>
-                    <a href="#" className="block py-2 px-4 text-gray-700 hover:bg-gray-300 flex items-center">
+                    <a href="#" className="block py-2 px-4 text-gray-700 hover:bg-gray-200 flex items-center">
                         <FileText className="mr-2" /> Facility Management
                     </a>
-                    <a href="#" className="block py-2 px-4 text-gray-700 hover:bg-gray-300 flex items-center">
+                    <a href="#" className="block py-2 px-4 text-gray-700 hover:bg-gray-200 flex items-center">
                         <Bell className="mr-2" /> Complaint Tracking
                     </a>
-                    <a href="#" className="block py-2 px-4 text-gray-700 hover:bg-gray-300 flex items-center">
+                    <a href="#" className="block py-2 px-4 text-gray-700 hover:bg-gray-200 flex items-center">
                         <ShieldCheck className="mr-2" /> Security Management
                     </a>
                 </nav>
