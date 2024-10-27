@@ -117,7 +117,7 @@ export default function RegistrationForm() {
               <h2 className="text-3xl font-bold text-gray-900 "><span className='dash'>Dash</span>Stack</h2>
             </div>
             <div className='flex justify-center mt-20'>
-              <img src={regImg} alt="Isometric illustration" className="max-w-md image1" />
+              <img src={regImg} alt="Isometric illustration" className="max-w-md" />
             </div>
 
 
@@ -131,7 +131,7 @@ export default function RegistrationForm() {
 
           <div className=' flex justify-center'>
 
-            <form className="space-y-5 flex flex-col justify-center p-12 bg-white regform w-2/3" onSubmit={handleSubmit}>
+            <form className="space-y-5 flex flex-col justify-center p-12 bg-white w-2/3" onSubmit={handleSubmit}>
               <h2 className="text-3xl font-semibold mb-6">Registration</h2>
               <div className="grid grid-cols-2 gap-4">
                 <div>
