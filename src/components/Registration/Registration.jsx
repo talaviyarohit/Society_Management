@@ -110,31 +110,28 @@ export default function RegistrationForm() {
       <div className="flex min-h-screen bg-gray-100">
         {/* Left side */}
         <div className="  flex-col justify-center px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24 left-50 bg-gray-200">
-          <div className="  justify-center">
-            
+          <div className="  justify-center ">
 
-              <div className='mt-14'>
-                <h2 className="text-3xl font-bold text-gray-900 "><span className='dash'>Dash</span>Stack</h2>
-              </div>
-              <div className='flex justify-center mt-7'>
-                <img src={regImg} alt="Isometric illustration" className="max-w-md image1" />
-              </div>
 
-           
+            <div className='mt-20'>
+              <h2 className="text-3xl font-bold text-gray-900 "><span className='dash'>Dash</span>Stack</h2>
+            </div>
+            <div className='flex justify-center mt-20'>
+              <img src={regImg} alt="Isometric illustration" className="max-w-md image1" />
+            </div>
+
+
 
           </div>
-          <div className="text-center mt-20">
-            <h2 className="text-2xl font-semibold">Connect, Collaborate, and Control - <span className="text-[#FF5733]">Society</span></h2>
-            <h2 className="text-2xl font-semibold"><span className="text-[#FF5733]">Management</span> Simplified.</h2>
-          </div>
+
         </div>
 
         {/* Right side */}
         <div className=" w-1/2 bg-white p-10 right-side pt-20 login-background1 flex justify-center ">
 
-          <div>
+          <div className=' flex justify-center'>
 
-            <form className="space-y-5 flex flex-col justify-center p-12 bg-white regform " onSubmit={handleSubmit}>
+            <form className="space-y-5 flex flex-col justify-center p-12 bg-white regform w-2/3" onSubmit={handleSubmit}>
               <h2 className="text-3xl font-semibold mb-6">Registration</h2>
               <div className="grid grid-cols-2 gap-4">
                 <div>
@@ -274,9 +271,9 @@ export default function RegistrationForm() {
                   Register
                 </button>
               </div>
-            <p className="mt-6 text-center text-sm text-gray-600">
-              Already have an account? <a href="#" className="font-medium text-[#FF5733] hover:text-[#FF8C00]">Login</a>
-            </p>
+              <p className="mt-6 text-center text-sm text-gray-600">
+                Already have an account? <a href="#" className="font-medium text-[#FF5733] hover:text-[#FF8C00]">Login</a>
+              </p>
             </form>
           </div>
           <div>
