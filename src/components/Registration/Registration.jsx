@@ -126,7 +126,7 @@ export default function RegistrationForm() {
 
         {/* Right side */}
         <div className="flex w-full lg:w-1/2 xl:w-2/3 justify-center  sm:p-10 bg-white login-background1 pt-20 right-side">
-          <form className=" w-full  p-4 sm:p-8 lg:p-12  regform" onSubmit={handleSubmit}>
+          <form className=" w-full  p-4 sm:p-8 lg:p-12 bg-white  regform" onSubmit={handleSubmit}>
             <h2 className="text-2xl sm:text-3xl font-semibold mb-6  lg:text-left">Registration</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4  mb-10">
               <div>
@@ -189,7 +189,7 @@ export default function RegistrationForm() {
               </div>
             </div>
             {/* Password and Confirm Password */}
-            <div >
+            <div className='mb-10' >
               <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password*</label>
               <div className="mt-1 relative">
                 <input type={showPassword ? "text" : "password"} id="password" name="password" value={formData.password} onChange={handleChange} className="block w-full border border-gray-300 rounded-md py-2 px-3" required />
@@ -198,7 +198,7 @@ export default function RegistrationForm() {
                 </button>
               </div>
             </div>
-            <div >
+            <div className='mb-10' >
               <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">Confirm Password*</label>
               <div className="mt-1 relative">
                 <input type={showConfirmPassword ? "text" : "password"} id="confirmPassword" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} className="block w-full border border-gray-300 rounded-md py-2 px-3" required />
