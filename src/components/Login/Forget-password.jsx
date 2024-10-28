@@ -20,23 +20,22 @@ export default function ForgetPassword() {
         setIsFormValid(value.trim() !== '');
     };
 
-    
-
     const handleClick = () => {
         navigate('/otppage');
     };
 
     return (
-        <div className="flex flex-col lg:flex-row min-h-screen bg-gray-50 relative">
-            {/* Left side */}
-            <div className="flex-1 flex flex-col justify-center items-center px-4 sm:px-6 lg:px-20 xl:px-24 bg-gray-200">
-                <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg">
-                    <div className="mb-8 text-center">
-                        <h2 className="text-3xl font-bold text-gray-900"><span className="dash">Dash</span>Stack</h2>
+        <div className="flex min-h-screen bg-gray-50 relative">
+            {/* Left Side */}
+            <div className="hidden lg:flex flex-1 flex-col justify-center px-8 sm:px-10 lg:px-20 xl:px-24 bg-gray-200">
+                <div className="w-full max-w-sm lg:w-96 mx-auto">
+                    <div className="mb-8">
+                        <h2 className="text-3xl font-bold text-gray-900">
+                            <span className='dash'>Dash</span>Stack
+                        </h2>
                     </div>
                     <div className="relative mb-8">
-                        <img src={login} alt="Password Reset Illustration" className="w-full max-w-[250px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-full mx-auto" />
-
+                        <img src={login} alt="Society Management Illustration" className="w-full object-cover" />
                     </div>
                 </div>
             </div>
