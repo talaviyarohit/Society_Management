@@ -1,9 +1,8 @@
 
-
-
-import React, { useState } from 'react';
-import { EyeIcon, EyeOffIcon } from 'lucide-react';
-import login from '../../assets/image/login.png';
+import React from 'react';
+import { useState } from 'react'
+import { EyeIcon, EyeOffIcon } from 'lucide-react'
+import login from '../../assets/image/login.png'
 import '../../assets/css/login/login.css';
 import { Link } from 'react-router-dom';
 
@@ -24,23 +23,30 @@ export default function Login() {
 
     return (
         <div className="flex min-h-screen bg-gray-50 relative">
-            {/* Left Side */}
-            <div className="hidden lg:flex flex-1 flex-col justify-center px-8 sm:px-10 lg:px-20 xl:px-24 bg-gray-200">
-                <div className="w-full max-w-sm lg:w-96 mx-auto">
-                    <div className="mb-8">
+            {/* Left side */}
+            <div className="flex-1 flex flex-col justify-center px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24 left-50 bg-gray-200">
+                <div className=" w-full max-w-sm lg:w-96 dashstack">
+                    <div className=" mb-24">
                         <h2 className="text-3xl font-bold text-gray-900"><span className='dash'>Dash</span>Stack</h2>
                     </div>
-                    <div className="relative mb-8">
-                        <img src={login} alt="Society Management Illustration" className="w-full object-cover" />
+                    <div className="relative mb-8 image">
+                        <img src={login} alt="Society Management Illustration" className="w-full" />
+
                     </div>
                 </div>
             </div>
 
-            {/* Right Side */}
-            <div className="flex-1 flex flex-col justify-center px-4 sm:px-6 lg:px-20 xl:px-24 pt-10 lg:pt-20 right-side">
-                <div className="mx-auto w-full max-w-md lg:max-w-lg login-background p-6 bg-white rounded-lg shadow-md">
-                    <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center">Login</h2>
-                    <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); setShowError(true); }}>
+            {/* Right side */}
+            <div className="flex-1 flex flex-col justify-center px-4 sm:px-6 lg:px-20 xl:px-24 pt-20 right-side">
+                <div className="mx-auto  lg:w-96 login-background">
+                    <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+
+                    </div>
+                    <h2 className="text-3xl font-bold mb-6">Login</h2>
+                    <form className="space-y-6" onSubmit={(e) => {
+                        e.preventDefault();
+                        setShowError(true);
+                    }}>
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                                 Email or Phone*
@@ -85,11 +91,7 @@ export default function Login() {
                                 </button>
                             </div>
                         </div>
-                        {showError && (
-                            <div className="text-red-500 text-sm mt-1">
-                                Incorrect Password.
-                            </div>
-                        )}
+                        <div className="text-red-500 text-sm mt-1 hidden">Incorrect Password.</div>
 
                         <div className="flex items-center justify-between">
                             <div className="flex items-center">
@@ -114,7 +116,8 @@ export default function Login() {
                         <div>
                             <button
                                 type="submit"
-                                className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white transition-colors ${isFormValid ? 'bg-orange-500 hover:bg-orange-600' : 'bg-gray-400 cursor-not-allowed'}`}
+                                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gradient-to-r bg-gray-400"
+                                style={{ backgroundColor: isFormValid ? '#FE512E' : 'gray' }}
                                 disabled={!isFormValid}
                             >
                                 Sign in
@@ -130,10 +133,8 @@ export default function Login() {
                     </p>
                 </div>
             </div>
-
-            {/* Background Gradient Decorations */}
-            <div className="absolute top-0 right-1/2 bottom-0 w-px bg-gradient-to-b from-transparent via-gray-200 to-transparent hidden lg:block"></div>
-            <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-br from-orange-100/20 to-transparent hidden lg:block" style={{ clipPath: 'polygon(100% 0, 0 0, 100% 100%)' }}></div>
+            <div className="absolute top-0 right-1/2 bottom-0 w-px bg-gradient-to-b from-transparent via-gray-200 to-transparent"></div>
+            <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-br from-orange-100/20 to-transparent" style={{ clipPath: 'polygon(100% 0, 0 0, 100% 100%)' }}></div>
         </div>
     );
 }

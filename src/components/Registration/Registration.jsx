@@ -107,111 +107,186 @@ export default function RegistrationForm() {
 
   return (
     <>
-    
+      <div className="flex min-h-screen bg-gray-100">
+        {/* Left side */}
+        <div className="  flex-col justify-center px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24 left-50 bg-gray-200">
+          <div className="  justify-center">
+            
 
-<div className="flex flex-col lg:flex-row min-h-screen bg-gray-100">
-  {/* Left side */}
-  <div className="flex flex-col  justify-center px-4 sm:px-6 lg:flex-none lg:w-1/2 lg:px-20 xl:px-24 bg-gray-200">
-    <div className="mt-14">
-      <h2 className="text-3xl font-bold text-gray-900"><span className='dash'>Dash</span>Stack</h2>
-    </div>
-    <div className="flex justify-center mt-7">
-      <img src={regImg} alt="Isometric illustration" className="max-w-md image1" />
-    </div>
-    <div className="text-center mt-12 lg:mt-20">
-      <h2 className="text-2xl sm:text-3xl font-semibold">Connect, Collaborate, and Control - <span className="text-[#FF5733]">Society</span></h2>
-      <h2 className="text-2xl sm:text-3xl font-semibold"><span className="text-[#FF5733]">Management</span> Simplified.</h2>
-    </div>
-  </div>
-
-  {/* Right side */}
-  <div className="flex w-full lg:w-1/2 xl:w-2/3 justify-center p-4 sm:p-10 bg-white login-background1 pt-20">
-    <form className="space-y-5 w-full  p-4 sm:p-8 lg:p-12 bg-white regform" onSubmit={handleSubmit}>
-      <h2 className="text-2xl sm:text-3xl font-semibold mb-6  lg:text-left">Registration</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
-          <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">First Name*</label>
-          <input type="text" id="firstName" name="firstName" value={formData.firstName} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
-        </div>
-        <div>
-          <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">Last Name*</label>
-          <input type="text" id="lastName" name="lastName" value={formData.lastName} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
-        </div>
-      </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email Address*</label>
-          <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
-        </div>
-        <div>
-          <label htmlFor="number" className="block text-sm font-medium text-gray-700">Phone Number*</label>
-          <input type="tel" id="number" name="number" value={formData.number} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
-        </div>
-      </div>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div>
-          <label htmlFor="country" className="block text-sm font-medium text-gray-700">Country*</label>
-          <input type="text" id="country" name="country" value={formData.country} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
-        </div>
-        <div>
-          <label htmlFor="state" className="block text-sm font-medium text-gray-700">State*</label>
-          <input type="text" id="state" name="state" value={formData.state} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
-        </div>
-        <div>
-          <label htmlFor="city" className="block text-sm font-medium text-gray-700">City*</label>
-          <input type="text" id="city" name="city" value={formData.city} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
-        </div>
-      </div>
-      {/* Dropdown menu */}
-      <div className="w-full">
-        <label htmlFor="society" className="block text-sm font-medium text-gray-700 mb-1">Select Society*</label>
-        <div className="relative">
-          <div onClick={toggleDropdown} className="w-full bg-white border border-gray-300 rounded-md shadow-sm px-4 py-2 text-left cursor-pointer">
-            <span className="block truncate">{selectedSociety.name || 'Select a society'}</span>
-            <ChevronDown className="absolute inset-y-0 right-0 pr-2 h-5 w-5 text-gray-400" />
-          </div>
-          {isOpen && (
-            <div className="absolute z-10 mt-1 w-full bg-white shadow-lg rounded-md py-1">
-              <div className="max-h-48 overflow-y-auto custom-scrollbar">
-                <ul className="py-1">
-                  {society.map((society) => (
-                    <li key={society.id} onClick={() => handleSelect(society)} className="text-gray-900 cursor-pointer py-2 pl-3 pr-9 hover:bg-gray-100">
-                      {society.name}
-                    </li>
-                  ))}
-                </ul>
+              <div className='mt-14'>
+                <h2 className="text-3xl font-bold text-gray-900 "><span className='dash'>Dash</span>Stack</h2>
               </div>
-              <button type='button' onClick={togglePopup} className="w-full bg-orange-500 text-white font-semibold py-2 px-4 rounded hover:bg-orange-600">
-                Create Society
-              </button>
-            </div>
-          )}
+              <div className='flex justify-center mt-7'>
+                <img src={regImg} alt="Isometric illustration" className="max-w-md image1" />
+              </div>
+
+           
+
+          </div>
+          <div className="text-center mt-20">
+            <h2 className="text-2xl font-semibold">Connect, Collaborate, and Control - <span className="text-[#FF5733]">Society</span></h2>
+            <h2 className="text-2xl font-semibold"><span className="text-[#FF5733]">Management</span> Simplified.</h2>
+          </div>
+        </div>
+
+        {/* Right side */}
+        <div className=" w-1/2 bg-white p-10 right-side pt-20 login-background1 flex justify-center ">
+
+          <div>
+
+            <form className="space-y-5 flex flex-col justify-center p-12 bg-white regform " onSubmit={handleSubmit}>
+              <h2 className="text-3xl font-semibold mb-6">Registration</h2>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">First Name*</label>
+                  <input type="text" id="firstName" name="firstName" value={formData.firstName} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
+                </div>
+                <div>
+                  <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">Last Name*</label>
+                  <input type="text" id="lastName" name="lastName" value={formData.lastName} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email Address*</label>
+                  <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
+                </div>
+                <div>
+                  <label htmlFor="number" className="block text-sm font-medium text-gray-700">Phone Number*</label>
+                  <input type="tel" id="number" name="number" value={formData.number} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
+                </div>
+              </div>
+              <div className="grid grid-cols-3 gap-4">
+                <div>
+                  <label htmlFor="country" className="block text-sm font-medium text-gray-700">Country*</label>
+                  <input type="text" id="country" name="country" value={formData.country} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
+                </div>
+                <div>
+                  <label htmlFor="state" className="block text-sm font-medium text-gray-700">State*</label>
+                  <input type="text" id="state" name="state" value={formData.state} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
+                </div>
+                <div>
+                  <label htmlFor="city" className="block text-sm font-medium text-gray-700">City*</label>
+                  <input type="text" id="city" name="city" value={formData.city} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
+                </div>
+              </div>
+              <div className="w-full">
+                <label htmlFor="society" className="block text-sm font-medium text-gray-700 mb-1">
+                  Select Society*
+                </label>
+                <div className="relative">
+                  <div
+                    className="w-full bg-white border border-gray-300 rounded-md shadow-sm px-4 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                    onClick={toggleDropdown}
+                  >
+                    <span className="block truncate">{selectedSociety.name || 'Select a society'}</span>
+                    <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
+                      <ChevronDown className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                    </span>
+                  </div>
+                  {isOpen && (
+                    <div className="absolute z-10 mt-1 w-full bg-white shadow-lg rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+
+                      <div className="max-h-48 overflow-y-auto custom-scrollbar">
+                        <ul className="py-1">
+                          {society.map((society) => (
+                            <li
+                              key={society.id}
+                              className="text-gray-900 cursor-pointer select-none relative py-2 pl-3 pr-9 hover:bg-gray-100"
+                              onClick={() => handleSelect(society)}
+                            >
+                              {society.name}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className="sticky bottom-0 bg-white p-2">
+                        <button
+                          type='button'
+                          className="w-full bg-gradient-to-r from-orange-500 to-orange-300 hover:from-orange-600 hover:to-orange-400 text-white font-semibold py-2 px-4 rounded"
+                          onClick={togglePopup}
+                        >
+                          Create Society
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+              <div>
+                <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password*</label>
+                <div className="mt-1 relative rounded-md shadow-sm">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    id="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    className="block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]"
+                    required
+                  />
+                  <button
+                    type="button"
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? (
+                      <EyeOffIcon className="h-5 w-5 text-gray-400" />
+                    ) : (
+                      <EyeIcon className="h-5 w-5 text-gray-400" />
+                    )}
+                  </button>
+                </div>
+              </div>
+              <div>
+                <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">Confirm Password*</label>
+                <div className="mt-1 relative rounded-md shadow-sm">
+                  <input
+                    type={showConfirmPassword ? "text" : "password"}
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    className="block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]"
+                    required
+                  />
+                  <button
+                    type="button"
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  >
+                    {showConfirmPassword ? (
+                      <EyeOffIcon className="h-5 w-5 text-gray-400" />
+                    ) : (
+                      <EyeIcon className="h-5 w-5 text-gray-400" />
+                    )}
+                  </button>
+                </div>
+              </div>
+              <div className="flex items-center">
+                <input id="terms" name="terms" type="checkbox" className="h-4 w-4 text-[#FF5733] focus:ring-[#FF5733] border-gray-300 rounded" required />
+                <label htmlFor="terms" className="ml-1 block text-sm text-gray-900">
+                  I agree to all the Terms and <span className="text-[#FF5733]">Privacy Policies</span>
+                </label>
+              </div>
+              <div>
+                <button type="submit" className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-gradient-to-r from-[#FF5733] to-[#FFC300] hover:from-[#FF5733] hover:to-[#FF8C00] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FF5733]">
+                  Register
+                </button>
+              </div>
+            <p className="mt-6 text-center text-sm text-gray-600">
+              Already have an account? <a href="#" className="font-medium text-[#FF5733] hover:text-[#FF8C00]">Login</a>
+            </p>
+            </form>
+          </div>
+          <div>
+
+          </div>
         </div>
       </div>
-      {/* Password and Confirm Password */}
-      <div>
-        <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password*</label>
-        <div className="mt-1 relative">
-          <input type={showPassword ? "text" : "password"} id="password" name="password" value={formData.password} onChange={handleChange} className="block w-full border border-gray-300 rounded-md py-2 px-3" required />
-          <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute inset-y-0 right-0 pr-3">
-            {showPassword ? <EyeOffIcon className="h-5 w-5 text-gray-400" /> : <EyeIcon className="h-5 w-5 text-gray-400" />}
-          </button>
-        </div>
-      </div>
-      <div>
-        <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">Confirm Password*</label>
-        <div className="mt-1 relative">
-          <input type={showConfirmPassword ? "text" : "password"} id="confirmPassword" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} className="block w-full border border-gray-300 rounded-md py-2 px-3" required />
-          <button type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)} className="absolute inset-y-0 right-0 pr-3">
-            {showConfirmPassword ? <EyeOffIcon className="h-5 w-5 text-gray-400" /> : <EyeIcon className="h-5 w-5 text-gray-400" />}
-          </button>
-        </div>
-      </div>
-      <button type="submit" className="w-full bg-[#FF5733] text-white font-semibold py-3 px-4 rounded-md hover:bg-[#ff2e00]">Register</button>
-    </form>
-  </div>
-</div>
- {/* <Societypopup isOpen={isOpenDrop} togglePopup={togglePopup} /> */}
+
+      {/* <Societypopup isOpen={isOpenDrop} togglePopup={togglePopup} /> */}
+
 
  {isOpenDrop && (
         <div style={popupStyle}>
