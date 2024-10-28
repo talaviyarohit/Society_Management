@@ -21,10 +21,10 @@ const popupStyle = {
 
 
 
-const Societypopup = ({ isOpen, togglePopup }) => {
-    if (!isOpen) return null;
+const Societypopup = ({ isOpenDrop, togglePopup }) => {
+    if (!isOpenDrop) return null;
 
-     const [isOpenDrop, setIsOpenDrop] = useState(false);
+    //  const [isOpenDrop, setIsOpenDrop] = useState();
 
     // const togglePopup = () => {
     //     setIsOpenDrop(!isOpenDrop);

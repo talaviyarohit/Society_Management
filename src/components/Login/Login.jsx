@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
-import login from '../../assets/image/login.png';
+import {login} from '../../apis/api'
+import { Link, useNavigate } from 'react-router-dom';
+import loginImage from '../../assets/image/login.png';
 import '../../assets/css/login/login.css';
-import { Link } from 'react-router-dom';
 
 export default function Login() {
+    const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
     const [showError, setShowError] = useState(false);
     const [formData, setFormData] = useState({ email: '', password: '' });
@@ -16,7 +18,18 @@ export default function Login() {
             ...prevData,
             [name]: value,
         }));
-        setIsFormValid(value.trim() !== '' && formData.email.trim() !== '');
+        setIsFormValid(formData.email.trim() !== '' && formData.password.trim() !== '');
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await login(formData); // Call the login API
+            navigate('/dashboard'); // Redirect on successful login
+        } catch (error) {
+            console.error('Login failed:', error);
+            setShowError(true); // Show error message if login fails
+        }
     };
 
     return (
@@ -28,7 +41,7 @@ export default function Login() {
                         <h2 className="text-3xl font-bold text-gray-900"><span className='dash'>Dash</span>Stack</h2>
                     </div>
                     <div className="relative mb-8">
-                        <img src={login} alt="Society Management Illustration" className="w-full object-cover" />
+                        <img src={loginImage} alt="Society Management Illustration" className="w-full object-cover" />
                     </div>
                 </div>
             </div>
@@ -37,7 +50,7 @@ export default function Login() {
             <div className="flex-1 flex flex-col justify-center px-4 sm:px-6 lg:px-20 xl:px-24 pt-10 lg:pt-20 right-side">
                 <div className="mx-auto w-full max-w-md lg:max-w-lg login-background p-6 bg-white rounded-lg shadow-md">
                     <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center">Login</h2>
-                    <form className="space-y-6" onSubmit={(e) => { e.preventDefault(); setShowError(true); }}>
+                    <form className="space-y-6" onSubmit={handleSubmit}>
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                                 Email or Phone*
