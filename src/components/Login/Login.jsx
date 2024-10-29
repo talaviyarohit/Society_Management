@@ -36,13 +36,9 @@ export default function Login() {
         <div className="flex min-h-screen bg-gray-50 relative">
             {/* Left Side */}
             <div className="hidden lg:flex flex-1 flex-col justify-center px-8 sm:px-10 lg:px-20 xl:px-24 bg-gray-200 z-index">
-                <div className="w-full max-w-sm lg:w-96 mx-auto">
-                    <div className="mb-8">
-                        <h2 className="text-3xl font-bold text-gray-900"><span className='dash'>Dash</span>Stack</h2>
-                    </div>
-                    <div className="relative mb-8">
-                        <img src={loginImage} alt="Society Management Illustration" className="w-full object-cover" />
-                    </div>
+            <h1 className="text-3xl font-bold block text-gray-900 fixed" style={{top:'55px', left: '95px', fontSize:'50px'}}><span className='dash'>Dash</span>Stack</h1>
+                <div>
+                    <img src={loginImage} alt="Society Management Illustration" className="w-full object-cover" />
                 </div>
             </div>
 
