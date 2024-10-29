@@ -15,31 +15,45 @@ const popupStyle = {
   const popupContentStyle = {
     padding: '20px',
     borderRadius: '5px',
-  
   };
 
 
 
 
 const Societypopup = ({ isOpenDrop, togglePopup }) => {
-    if (!isOpenDrop) return null;
+  const [formData, setFormData] = useState({
+    name: '',
+    address: '',
+    country: '',
+    state: '',
+    city: '',
+    zipCode: ''
+  });
 
-    //  const [isOpenDrop, setIsOpenDrop] = useState();
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
 
-    // const togglePopup = () => {
-    //     setIsOpenDrop(!isOpenDrop);
-    //   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission here
+    console.log(formData);
+    togglePopup();
+  };
     
     return(
         <>
          {isOpenDrop && (
         <div style={popupStyle}>
-          <div className='rounded-md'>
-            <div className="flex  items-center  bg-gray-100">
-              <div className="bg-white p-8 rounded-lg shadow-md max-w-md w-full">
+          <div className='rounded-2xl'>
+            <div className="flex items-center bg-gray-100 rounded-2xl">
+              <div className="bg-white p-8 rounded-lg shadow-md max-w-md w-full ">
                 <h2 className="text-2xl font-bold mb-6 ">Create New Society</h2>
                 <form onSubmit={handleSubmit}>
-                  <div className="mb-4">
+                  <div className="mb-6">
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700">
                       Society Name<span className="text-red-500">*</span>
                     </label>
@@ -55,7 +69,7 @@ const Societypopup = ({ isOpenDrop, togglePopup }) => {
                     />
                   </div>
 
-                  <div className="mb-4">
+                  <div className="mb-6">
                     <label htmlFor="address" className="block text-sm font-medium text-gray-700">
                       Society Address<span className="text-red-500">*</span>
                     </label>
@@ -71,7 +85,7 @@ const Societypopup = ({ isOpenDrop, togglePopup }) => {
                     />
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4 mb-4">
+                  <div className="grid grid-cols-2 gap-4 mb-6">
                     <div>
                       <label htmlFor="country" className="block text-sm font-medium text-gray-700">
                         Country<span className="text-red-500">*</span>
@@ -104,7 +118,7 @@ const Societypopup = ({ isOpenDrop, togglePopup }) => {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4 mb-4">
+                  <div className="grid grid-cols-2 gap-4 mb-6">
                     <div>
                       <label htmlFor="city" className="block text-sm font-medium text-gray-700">
                         City<span className="text-red-500">*</span>
@@ -137,11 +151,11 @@ const Societypopup = ({ isOpenDrop, togglePopup }) => {
                     </div>
                   </div>
 
-                  <div className="flex justify-between">
-                    <button type="button" onClick={togglePopup} className="bg-gray-200 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-300">
+                  <div className="flex justify-between my-5">
+                    <button type="button" onClick={togglePopup} className="bg-transparent border border-zinc-400 text-gray-700 py-2 px-4 rounded-md" style={{width: '170px', height: '51px'}}>
                       Cancel
                     </button>
-                    <button type="submit" className="bg-gray-200 text-black py-2 px-4 rounded-md hover:bg-indigo-700">
+                    <button type="submit" className="bg-slate-200 text-black py-2 px-4 rounded-md " style={{width: '170px', height: '51px'}}>
                       Save
                     </button>
                   </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
-import {login} from '../../apis/api'
+import { login } from '../../apis/api'
 import { Link, useNavigate } from 'react-router-dom';
 import loginImage from '../../assets/image/login.png';
 import '../../assets/css/login/login.css';
@@ -35,7 +35,7 @@ export default function Login() {
     return (
         <div className="flex min-h-screen bg-gray-50 relative">
             {/* Left Side */}
-            <div className="hidden lg:flex flex-1 flex-col justify-center px-8 sm:px-10 lg:px-20 xl:px-24 bg-gray-200">
+            <div className="hidden lg:flex flex-1 flex-col justify-center px-8 sm:px-10 lg:px-20 xl:px-24 bg-gray-200 z-index">
                 <div className="w-full max-w-sm lg:w-96 mx-auto">
                     <div className="mb-8">
                         <h2 className="text-3xl font-bold text-gray-900"><span className='dash'>Dash</span>Stack</h2>
@@ -47,7 +47,7 @@ export default function Login() {
             </div>
 
             {/* Right Side */}
-            <div className="flex-1 flex flex-col justify-center px-4 sm:px-6 lg:px-20 xl:px-24 pt-10 lg:pt-20 right-side">
+            <div className="flex-1 flex flex-col justify-center px-4 sm:px-6 lg:px-20 xl:px-24 pt-10 lg:pt-20 z-index">
                 <div className="mx-auto w-full max-w-md lg:max-w-lg login-background p-6 bg-white rounded-lg shadow-md">
                     <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center">Login</h2>
                     <form className="space-y-6" onSubmit={handleSubmit}>
@@ -142,8 +142,7 @@ export default function Login() {
             </div>
 
             {/* Background Gradient Decorations */}
-            <div className="absolute top-0 right-1/2 bottom-0 w-px bg-gradient-to-b from-transparent via-gray-200 to-transparent hidden lg:block"></div>
-            <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gradient-to-br from-orange-100/20 to-transparent hidden lg:block" style={{ clipPath: 'polygon(100% 0, 0 0, 100% 100%)' }}></div>
+            <div style={{ top: '-81px' }} className="fixed right-0 bottom-0 w-px bg-gradient-to-b from-transparent via-gray-200 to-transparent hidden lg:block right-side"></div>
         </div>
     );
 }

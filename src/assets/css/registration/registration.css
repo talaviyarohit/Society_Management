@@ -20,4 +20,6 @@
   /* hover effect for the scrollbar thumb */
 }
 
-
+.z-index{
+  z-index: 9;
+}
