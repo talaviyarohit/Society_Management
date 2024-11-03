@@ -108,7 +108,7 @@ export default function RegistrationForm() {
         </div>
         {/* Right side */}
         <div className="flex w-full lg:w-1/2 xl:w-2/3 justify-center  sm:p-10 bg-white login-background1 pt-0 lg:pt-10">
-          <div className=' rounded-xl bg-white  regform border border-green z-index' style={{ width: '600px', height: '800px', padding: '25px', margin: 'auto 0' }}>
+          <div className=' rounded-xl bg-white  regform border border-green z-index' style={{ width: '550px', height: '750px', padding: '25px', margin: 'auto 0' }}>
             <h2 className="text-2xl sm:text-3xl pt-10 pb-2 font-semibold lg:text-left ps-5">Registration</h2>
             <form className="p-4 sm:p-8 lg:p-5" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4  mb-2">

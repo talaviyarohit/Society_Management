@@ -43,7 +43,7 @@ export default function Login() {
             </div>
 
             {/* Right Side */}
-            <div className="flex-1 flex flex-col justify-center px-4 sm:px-6 lg:px-20 xl:px-24 pt-10 lg:pt-20 z-index">
+            <div className="flex-1 flex flex-col justify-center px-4 sm:px-6 lg:px-20 xl:px-24 lg:pt-20 z-index">
                 <div className="mx-auto w-full max-w-md lg:max-w-lg login-background p-6 bg-white rounded-lg shadow-md">
                     <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center">Login</h2>
                     <form className="space-y-6" onSubmit={handleSubmit}>
