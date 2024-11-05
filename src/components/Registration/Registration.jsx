@@ -101,13 +101,13 @@ export default function RegistrationForm() {
       <div className="flex flex-col lg:flex-row min-h-screen bg-gray-100">
         {/* Left side */}
         <div className="hidden lg:flex flex-1 flex-col justify-center px-4 sm:px-6 lg:flex-none lg:w-1/2 lg:px-20 xl:px-24 bg-gray-200 z-index">
-          <h1 className="text-3xl font-bold block text-gray-900 fixed" style={{ top: '55px', left: '95px', fontSize: '50px' }}><span className='dash'>Dash</span>Stack</h1>
+          <h1 className="text-3xl font-bold block text-gray-900 " style={{ top: '55px', left: '95px', fontSize: '50px' }}><span className='dash'>Dash</span>Stack</h1>
           <div className="flex justify-center mt-14">
             <img src={regImg} alt="Isometric illustration" className="image1" />
           </div>
         </div>
         {/* Right side */}
-        <div className="flex w-full lg:w-1/2 xl:w-2/3 justify-center  sm:p-10 bg-white login-background1 pt-0 lg:pt-10">
+        <div className="flex w-full lg:w-1/2 xl:w-2/3 justify-center  sm:p-10 bg-white  pt-0 lg:pt-10">
           <div className=' rounded-xl bg-white  regform border border-green z-index' style={{ width: '550px', height: '750px', padding: '25px', margin: 'auto 0' }}>
             <h2 className="text-2xl sm:text-3xl pt-10 pb-2 font-semibold lg:text-left ps-5">Registration</h2>
             <form className="p-4 sm:p-8 lg:p-5" onSubmit={handleSubmit}>
@@ -201,14 +201,9 @@ export default function RegistrationForm() {
                   I agree to all the Terms and <span className='dash'>Privacy Policies</span>
                 </label>
               </div>
-<<<<<<< HEAD
 
               <button type="submit" className="w-full bg-[#FF5733] text-white font-semibold py-3 px-4 rounded-md hover:bg-[#ff2e00] mt-5">Register</button>
               <p className='mt-6 text-center  text-sm text-gray-600'>Already have an account ?<Link to="/" className="dash">Login</Link></p>
-=======
-              <button type="submit" className="w-full bg-slate-200 text-slate-700 font-semibold py-3 px-4 rounded-md hover:bg-[#ff2e00] hover:text-white mt-5">Register</button>
-              <p className='mt-6 text-center text-center text-sm text-gray-600'>Already have an account ?<Link to="/" className="dash">Login</Link></p>
->>>>>>> b9b810a47c52adaf64ea76c3c9bb12ca8a6669e6
             </form>
           </div>
         </div>
