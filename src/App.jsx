@@ -10,9 +10,15 @@ import Resetpassword from './components/Login/Resetpassword';
 import RegistrationForm from './components/Registration/Registration';
 import Dashboard from './components/Dashboard/Dashboard';
 import DashboardDetail from './components/Dashboard/DashboardDetail';
-// import Owner from './components/Resident_management/Owner';
+ import Owner from './components/Resident_management/Owner';
 // import Dashboard from './components/Dashboard/Dashboard';
-// import Tenant from './components/Resident_management/Tenant';
+ import Tenant from './components/Resident_management/Tenant';
+import { Statuspopup } from './components/Resident_management/Status_popup';
+import { ResidenceSatatusPopup } from './components/Resident_management/Residence_status_popup';
+import { DeletePopup } from './components/Resident_management/Delete_popup';
+import { ViewOwner } from './components/Resident_management/ViewOwner';
+import { ViewTenant } from './components/Resident_management/ViewTenant';
+import ResidentTable from './components/Resident_management/ResidentTable';
 
 
 
@@ -37,10 +43,19 @@ function App() {
         </Routes>
       </Router>
 
-      {/* <Dashboard/>
+      {/* <Dashboard/>*/}
 <Owner/>
-<Tenant/> */}
+      <Tenant/> 
 
+<ResidentTable/>
+      <Statuspopup/>
+
+      <ResidenceSatatusPopup/>
+
+      <DeletePopup/>
+
+      <ViewOwner/>
+      <ViewTenant/>
     </>
 
   );

@@ -219,7 +219,7 @@ export default function RegistrationForm() {
               </div>
 
               <button type="submit" className="w-full bg-[#FF5733] text-white font-semibold py-3 px-4 rounded-md hover:bg-[#ff2e00] mt-5">Register</button>
-              <p className='mt-6 text-center text-center text-sm text-gray-600'>Already have an account ?<Link to="/" className="dash">Login</Link></p>
+              <p className='mt-6 text-center  text-sm text-gray-600'>Already have an account ?<Link to="/" className="dash">Login</Link></p>
             </form>
           </div>
         </div>
@@ -232,7 +232,7 @@ export default function RegistrationForm() {
 
 
 
-      {/* {
+      {
         isOpenDrop && (
           <div style={popupStyle}>
             <div className='rounded-md'>
@@ -353,7 +353,7 @@ export default function RegistrationForm() {
             </div>
           </div>
         )
-      } */}
+      }
 
     </>
   )
@@ -376,4 +376,4 @@ const popupContentStyle = {
   borderRadius: '5px',
 
 };
-
+ 
