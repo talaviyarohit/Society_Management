@@ -1,15 +1,10 @@
 import { useEffect, useState } from 'react'
 import { EyeIcon, EyeOffIcon, ChevronDown } from 'lucide-react'
 import regImg from "../../assets/image/1.png"
-// import '../../assets/css/registration/registration.css'
 import '../../assets/css/login/login.css'
 import { Registration, Society } from '../../apis/api'
-import { useNavigate,Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Societypopup from './Society'
-
-
-
-
 
 export default function RegistrationForm() {
   const navigate = useNavigate();
@@ -19,8 +14,6 @@ export default function RegistrationForm() {
   const [selectedSociety, setSelectedSociety] = useState('');
   const [isOpenDrop, setIsOpenDrop] = useState(false);
   const [society, setSociety] = useState([]);
-  console.log(isOpenDrop)
-
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -102,77 +95,68 @@ export default function RegistrationForm() {
     setIsOpen(false);
   };
 
-  const handleCreateSociety = () => {
-    console.log("Create new society");
-    setIsOpen(false);
-  };
-
   return (
     <>
       {/* <Societypopup isOpen={isOpenDrop} togglePopup={togglePopup} /> */}
-
       <div className="flex flex-col lg:flex-row min-h-screen bg-gray-100">
         {/* Left side */}
-        <div className="hidden lg:flex flex-1 flex-col justify-center px-4 sm:px-6 lg:flex-none lg:w-1/2 lg:px-20 xl:px-24 bg-gray-200">
-          <div className="">
-            <h2 className="text-3xl font-bold text-gray-900"><span className='dash'>Dash</span>Stack</h2>
-          </div>
+        <div className="hidden lg:flex flex-1 flex-col justify-center px-4 sm:px-6 lg:flex-none lg:w-1/2 lg:px-20 xl:px-24 bg-gray-200 z-index">
+          <h1 className="text-3xl font-bold block text-gray-900 fixed" style={{ top: '55px', left: '95px', fontSize: '50px' }}><span className='dash'>Dash</span>Stack</h1>
           <div className="flex justify-center mt-14">
-            <img src={regImg} alt="Isometric illustration" className="max-w-md image1" />
+            <img src={regImg} alt="Isometric illustration" className="image1" />
           </div>
         </div>
-
         {/* Right side */}
-        <div className="flex w-full lg:w-1/2 xl:w-2/3 justify-center  sm:p-10 bg-white login-background1 pt-0 lg:pt-10 right-side">
-          <div className=' rounded-xl bg-white  regform border border-green'>
+        <div className="flex w-full lg:w-1/2 xl:w-2/3 justify-center  sm:p-10 bg-white login-background1 pt-0 lg:pt-10">
+          <div className=' rounded-xl bg-white  regform border border-green z-index' style={{ width: '550px', height: '750px', padding: '25px', margin: 'auto 0' }}>
             <h2 className="text-2xl sm:text-3xl pt-10 pb-2 font-semibold lg:text-left ps-5">Registration</h2>
             <form className="p-4 sm:p-8 lg:p-5" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4  mb-2">
                 <div>
-                  <label htmlFor="firstName" className="block text-sm font-medium text-gray-700">First Name*</label>
-                  <input type="text" id="firstName" name="firstName" value={formData.firstName} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
+                  <label htmlFor="firstName" className="block text-sm font-medium text-gray-950">First Name*</label>
+                  <input type="text" id="firstName" name="firstName" value={formData.firstName} onChange={handleChange} placeholder='Enter First Name' className="mt-1 block w-full border border-zinc-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
                 </div>
                 <div>
-                  <label htmlFor="lastName" className="block text-sm font-medium text-gray-700">Last Name*</label>
-                  <input type="text" id="lastName" name="lastName" value={formData.lastName} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
+                  <label htmlFor="lastName" className="block text-sm font-medium text-gray-950">Last Name*</label>
+                  <input type="text" id="lastName" name="lastName" value={formData.lastName} onChange={handleChange} placeholder='Enter Last Name' className="mt-1 block w-full border border-zinc-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
                 </div>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-2">
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email Address*</label>
-                  <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-950">Email Address*</label>
+                  <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} placeholder='Enter Email Address' className="mt-1 block w-full border border-zinc-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
                 </div>
                 <div>
-                  <label htmlFor="number" className="block text-sm font-medium text-gray-700">Phone Number*</label>
-                  <input type="tel" id="number" name="number" value={formData.number} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
+                  <label htmlFor="number" className="block text-sm font-medium text-gray-950">Phone Number*</label>
+                  <input type="tel" id="number" name="number" value={formData.number} onChange={handleChange} placeholder='Enter Phone Number' className="mt-1 block w-full border border-zinc-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
                 </div>
               </div>
               <div className="grid grid-cols-3 gap-4 mb-2">
                 <div>
-                  <label htmlFor="country" className="block text-sm font-medium text-gray-700">Country*</label>
-                  <input type="text" id="country" name="country" value={formData.country} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
+                  <label htmlFor="country" className="block text-sm font-medium text-gray-950">Country*</label>
+                  <input type="text" id="country" name="country" value={formData.country} onChange={handleChange} placeholder='Enter Country' className="mt-1 block w-full border border-zinc-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
                 </div>
                 <div>
-                  <label htmlFor="state" className="block text-sm font-medium text-gray-700">State*</label>
-                  <input type="text" id="state" name="state" value={formData.state} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
+                  <label htmlFor="state" className="block text-sm font-medium text-gray-950">State*</label>
+                  <input type="text" id="state" name="state" value={formData.state} onChange={handleChange} placeholder='Enter State' className="mt-1 block w-full border border-zinc-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
                 </div>
                 <div>
-                  <label htmlFor="city" className="block text-sm font-medium text-gray-700">City*</label>
-                  <input type="text" id="city" name="city" value={formData.city} onChange={handleChange} className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
+                  <label htmlFor="city" className="block text-sm font-medium text-gray-950">City*</label>
+                  <input type="text" id="city" name="city" value={formData.city} onChange={handleChange} placeholder='Enter City' className="mt-1 block w-full border border-zinc-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-[#FF5733] focus:border-[#FF5733]" required />
                 </div>
               </div>
               {/* Dropdown menu */}
               <div className="w-full mb-2">
-                <label htmlFor="society" className="block text-sm font-medium text-gray-700 mb-1">Select Society*</label>
+                <label htmlFor="society" className="block text-sm font-medium text-gray-950 mb-1">Select Society*</label>
                 <div className="relative">
-                  <div onClick={toggleDropdown} className="w-full bg-white border border-gray-300 rounded-md shadow-sm px-4 py-2 text-left cursor-pointer">
+                  <div onClick={toggleDropdown} className="w-full bg-white border border-zinc-300 rounded-md shadow-sm px-4 py-2 text-left cursor-pointer">
                     <span className="block truncate">{selectedSociety.name || 'Select a society'}</span>
-                    <ChevronDown className="absolute inset-y-0 right-0 pr-2 h-5 w-5 text-gray-400" />
+                    <ChevronDown className="absolute inset-y-0 right-0 pr-2 h-5 w-7 text-slate-950" style={{ top: '12px' }} />
                   </div>
                   {isOpen && (
-                    <div className="absolute z-10 mt-1 w-full bg-white shadow-lg rounded-md py-1">
+                    <div className="absolute z-10 mt-1 w-full bg-white shadow-lg rounded-md p-2.5">
                       <div className="max-h-48 overflow-y-auto custom-scrollbar">
-                        <ul className="py-1">
+                        <ul>
                           {society.map((society) => (
                             <li key={society.id} onClick={() => handleSelect(society)} className="text-gray-900 cursor-pointer py-2 pl-3 pr-9 hover:bg-gray-100">
                               {society.name}
@@ -189,20 +173,20 @@ export default function RegistrationForm() {
               </div>
               {/* Password and Confirm Password */}
               <div className='mb-2'>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password*</label>
+                <label htmlFor="password" className="block text-sm font-medium text-gray-950">Password*</label>
                 <div className="mt-1 relative">
-                  <input type={showPassword ? "text" : "password"} id="password" name="password" value={formData.password} onChange={handleChange} className="block w-full border border-gray-300 rounded-md py-2 px-3" required />
+                  <input type={showPassword ? "text" : "password"} placeholder='Enter Password' id="password" name="password" value={formData.password} onChange={handleChange} className="block w-full border border-zinc-300 rounded-md py-2 px-3" required />
                   <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute inset-y-0 right-0 pr-3">
-                    {showPassword ? <EyeOffIcon className="h-5 w-5 text-gray-400" /> : <EyeIcon className="h-5 w-5 text-gray-400" />}
+                    {showPassword ? <EyeOffIcon className="h-5 w-5 text-slate-950" /> : <EyeIcon className="h-5 w-5 text-slate-950" />}
                   </button>
                 </div>
               </div>
               <div className='mb-2'>
-                <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">Confirm Password*</label>
+                <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-950">Confirm Password*</label>
                 <div className="mt-1 relative">
-                  <input type={showConfirmPassword ? "text" : "password"} id="confirmPassword" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} className="block w-full border border-gray-300 rounded-md py-2 px-3" required />
+                  <input type={showConfirmPassword ? "text" : "password"} id="confirmPassword" name="confirmPassword" placeholder='Enter Confirm Password' value={formData.confirmPassword} onChange={handleChange} className="block w-full border border-zinc-300 rounded-md py-2 px-3" required />
                   <button type="button" onClick={() => setShowConfirmPassword(!showConfirmPassword)} className="absolute inset-y-0 right-0 pr-3">
-                    {showConfirmPassword ? <EyeOffIcon className="h-5 w-5 text-gray-400" /> : <EyeIcon className="h-5 w-5 text-gray-400" />}
+                    {showConfirmPassword ? <EyeOffIcon className="h-5 w-5 text-slate-950" /> : <EyeIcon className="h-5 w-5 text-slate-950" />}
                   </button>
                 </div>
               </div>
@@ -211,23 +195,30 @@ export default function RegistrationForm() {
                   id="remember-me"
                   name="remember-me"
                   type="checkbox"
-                  className="h-4 w-4 text-orange-600 focus:ring-orange-500 border-gray-300 rounded"
+                  className="h-4 w-4 text-orange-600 focus:ring-orange-500 border-zinc-300 rounded"
                 />
                 <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
                   I agree to all the Terms and <span className='dash'>Privacy Policies</span>
                 </label>
               </div>
+<<<<<<< HEAD
 
               <button type="submit" className="w-full bg-[#FF5733] text-white font-semibold py-3 px-4 rounded-md hover:bg-[#ff2e00] mt-5">Register</button>
               <p className='mt-6 text-center  text-sm text-gray-600'>Already have an account ?<Link to="/" className="dash">Login</Link></p>
+=======
+              <button type="submit" className="w-full bg-slate-200 text-slate-700 font-semibold py-3 px-4 rounded-md hover:bg-[#ff2e00] hover:text-white mt-5">Register</button>
+              <p className='mt-6 text-center text-center text-sm text-gray-600'>Already have an account ?<Link to="/" className="dash">Login</Link></p>
+>>>>>>> b9b810a47c52adaf64ea76c3c9bb12ca8a6669e6
             </form>
           </div>
         </div>
+
+        <div style={{ top: '-40px' }} className="fixed right-0 bottom-0 w-px bg-gradient-to-b from-transparent via-gray-200 to-transparent hidden lg:block right-side"></div>
       </div>
 
 
 
-      <Societypopup isOpen={isOpenDrop} togglePopup={togglePopup} />
+      <Societypopup isOpenDrop={isOpenDrop} togglePopup={togglePopup} />
 
 
 
@@ -241,7 +232,7 @@ export default function RegistrationForm() {
                   <h2 className="text-2xl font-bold mb-6 ">Create New Society</h2>
                   <form onSubmit={handleSubmit}>
                     <div className="mb-4">
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="name" className="block text-sm font-medium text-gray-950">
                         Society Name<span className="text-red-500">*</span>
                       </label>
                       <input
@@ -257,7 +248,7 @@ export default function RegistrationForm() {
                     </div>
 
                     <div className="mb-4">
-                      <label htmlFor="address" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="address" className="block text-sm font-medium text-gray-950">
                         Society Address<span className="text-red-500">*</span>
                       </label>
                       <input
@@ -274,7 +265,7 @@ export default function RegistrationForm() {
 
                     <div className="grid grid-cols-2 gap-4 mb-4">
                       <div>
-                        <label htmlFor="country" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="country" className="block text-sm font-medium text-gray-950">
                           Country<span className="text-red-500">*</span>
                         </label>
                         <input
@@ -285,11 +276,11 @@ export default function RegistrationForm() {
                           onChange={handleChange}
                           required
                           className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
-                          placeholder="Enter Name"
+                          placeholder="Enter Country"
                         />
                       </div>
                       <div>
-                        <label htmlFor="state" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="state" className="block text-sm font-medium text-gray-950">
                           State<span className="text-red-500">*</span>
                         </label>
                         <input
@@ -307,7 +298,7 @@ export default function RegistrationForm() {
 
                     <div className="grid grid-cols-2 gap-4 mb-4">
                       <div>
-                        <label htmlFor="city" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="city" className="block text-sm font-medium text-gray-950">
                           City<span className="text-red-500">*</span>
                         </label>
                         <input
@@ -322,7 +313,7 @@ export default function RegistrationForm() {
                         />
                       </div>
                       <div>
-                        <label htmlFor="zipCode" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="zipCode" className="block text-sm font-medium text-gray-950">
                           Zip Code<span className="text-red-500">*</span>
                         </label>
                         <input
@@ -339,7 +330,7 @@ export default function RegistrationForm() {
                     </div>
 
                     <div className="flex justify-between">
-                      <button type="button" onClick={togglePopup} className="bg-gray-200 text-gray-700 py-2 px-4 rounded-md hover:bg-gray-300">
+                      <button type="button" onClick={togglePopup} className="bg-gray-200 text-gray-950 py-2 px-4 rounded-md hover:bg-gray-300">
                         Cancel
                       </button>
                       <button type="submit" className="bg-gray-200 text-black py-2 px-4 rounded-md hover:bg-indigo-700">
